@@ -10,7 +10,7 @@ import {
 
 interface ProcessStep {
   title: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   desc: string;
 }
 
@@ -37,7 +37,7 @@ const processSteps: ProcessStep[] = [
   },
 ];
 
-export default function ProcessSection(): JSX.Element {
+export default function ProcessSection() {
   return (
     <section id="process" className="w-full py-24 px-6 bg-gray-50">
       <div className="max-w-6xl mx-auto text-center mb-16">

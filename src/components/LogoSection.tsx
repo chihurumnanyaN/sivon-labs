@@ -14,7 +14,7 @@ const ACCREDITATIONS = [
 ];
 
 export default function AccreditationsSection() {
-  const logos = [...ACCREDITATIONS, ...ACCREDITATIONS]; // duplicate for infinite scroll
+  const desktopLogos = [...ACCREDITATIONS, ...ACCREDITATIONS]; // desktop infinite scroll
 
   return (
     <section className="py-16 bg-gray-50 overflow-hidden">
@@ -23,19 +23,40 @@ export default function AccreditationsSection() {
           Our Accreditations & Partners
         </h2>
 
-        <div className="relative w-full overflow-hidden">
+        {/* DESKTOP: Infinite Scroll with Duplicates */}
+        <div className="hidden md:block w-full overflow-hidden h-[50px] relative">
           <div className="flex animate-scroll gap-12">
-            {logos.map((item, index) => (
+            {desktopLogos.map((item, index) => (
               <div
                 key={item.name + index}
-                className="opacity-70 hover:opacity-100 transition"
+                className="flex-shrink-0 opacity-70 hover:opacity-100 transition"
               >
                 <Image
                   src={`https://logo.clearbit.com/${item.domain}`}
                   alt={item.name}
-                  width={140}
-                  height={70}
-                  className=" hover:grayscale-0 transition object-contain w-auto h-auto"
+                  width={120}
+                  height={50}
+                  className="object-contain w-[120px] h-[50px] min-w-[120px]"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* MOBILE: Single Row, Auto Slide, No Duplicate */}
+        <div className="md:hidden w-full overflow-hidden h-[50px] relative">
+          <div className="flex gap-5 animate-mobile-scroll">
+            {ACCREDITATIONS.map((item, index) => (
+              <div
+                key={item.name + index}
+                className="shrink-0 opacity-70 hover:opacity-100 transition"
+              >
+                <Image
+                  src={`https://logo.clearbit.com/${item.domain}`}
+                  alt={item.name}
+                  width={100}
+                  height={40}
+                  className="object-contain w-[100px] h-10 min-w-[100px]"
                 />
               </div>
             ))}

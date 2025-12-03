@@ -5,7 +5,7 @@ import { FiClock, FiCpu, FiAward, FiUsers } from "react-icons/fi";
 
 interface TrustPoint {
   title: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   desc: string;
 }
 
