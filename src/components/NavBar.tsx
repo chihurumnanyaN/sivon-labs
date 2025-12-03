@@ -1,25 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { FiMenu, FiX } from "react-icons/fi";
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+export default function Navbar({ scrolled }: { scrolled: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <>
@@ -30,7 +17,7 @@ export default function Navbar() {
         className={` w-full  z-50 transition-all duration-300 ${
           scrolled
             ? "bg-white/80 backdrop-blur-md py-3 fixed top-0 text-black"
-            : "bg-blue-950/50 py-3 sticky text-white"
+            : "bg-blue-950/50 py-3 sticky top-0 text-white"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between py-5">
@@ -63,8 +50,10 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
             className="md:hidden text-3xl"
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => setMenuOpen((prev) => !prev)}
           >
             {menuOpen ? <FiX /> : <FiMenu />}
           </button>
@@ -76,8 +65,9 @@ export default function Navbar() {
         initial={{ height: 0 }}
         animate={{ height: menuOpen ? "auto" : 0 }}
         transition={{ duration: 0.3 }}
+        id="mobile-menu"
         className={`md:hidden bg-white text-black absolute w-full overflow-hidden shadow-lg z-20 ${
-          menuOpen && !scrolled ? "fixed top-42" : menuOpen && "fixed top-21"
+          menuOpen ? "fixed top-[92px]" : ""
         } `}
       >
         <div className="flex flex-col px-6 py-4 gap-4 text-lg font-medium">

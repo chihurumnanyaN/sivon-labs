@@ -58,7 +58,9 @@ export default function ProcessSection(): JSX.Element {
             whileHover={{ scale: 1.05 }}
             className="p-8 bg-white rounded-2xl shadow-lg border border-gray-200 text-center cursor-pointer"
           >
-            <div className="text-blue-600 mb-4">{step.icon}</div>
+            <div className="flex justify-center text-blue-600 mb-4">
+              {step.icon}
+            </div>
             <h3 className="text-xl font-semibold text-gray-900">
               {step.title}
             </h3>

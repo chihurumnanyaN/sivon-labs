@@ -3,12 +3,11 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import Navbar from "./NavBar";
-import Stats from "./Stats";
 
-export default function HeroSection() {
+export default function HeroSection({ scrolled }: { scrolled: boolean }) {
   return (
     <section className="relative w-full h-[90vh] md:h-screen  flex flex-col gap-30 items-start justify-start text-white">
-      <Navbar />
+      <Navbar scrolled={scrolled} />
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         <Image
@@ -27,7 +26,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold leading-tight"
+          className={`text-4xl md:text-6xl font-bold leading-tight ${
+            scrolled && "mt-45"
+          }`}
         >
           Accurate Diagnostics.
           <br /> Trusted Laboratory Results.

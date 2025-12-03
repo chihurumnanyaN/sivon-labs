@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import ServicesSection from "../components/OurServices";
@@ -10,12 +12,25 @@ import Footer from "../components/Footer";
 import ContactLocationSection from "../components/ContactLocationSection";
 import TopContactBar from "../components/Topbar";
 
-const page = () => {
+const Page = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <main>
       <div className="w-full h-fit ">
         <TopContactBar />
-        <HeroSection />
+        <HeroSection scrolled={scrolled} />
       </div>
       <AboutSection />
       <ServicesSection />
@@ -30,4 +45,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

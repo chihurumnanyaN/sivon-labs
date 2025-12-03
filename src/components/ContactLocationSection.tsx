@@ -26,8 +26,8 @@ export default function ContactLocationSection() {
           </h2>
 
           <p className="text-gray-600 mb-8">
-            Reach out to us or visit our laboratory in Aba. We're always ready
-            to assist you.
+            Reach out to us or visit our laboratory in Aba. {"We're"} always
+            ready to assist you.
           </p>
 
           <div className="space-y-6">
