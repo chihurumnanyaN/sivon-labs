@@ -3,8 +3,10 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import Navbar from "./NavBar";
+import { useScroll } from "../context/ScrollContext";
 
-export default function HeroSection({ scrolled }: { scrolled: boolean }) {
+export default function HeroSection() {
+  const { scrolled } = useScroll();
   return (
     <section className="relative w-full h-[90vh] md:h-screen  flex flex-col gap-30 items-start justify-start text-white">
       <Navbar scrolled={scrolled} />

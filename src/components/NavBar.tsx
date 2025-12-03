@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { FiMenu, FiX } from "react-icons/fi";
